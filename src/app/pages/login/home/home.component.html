@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="header">
+        <p>Banco de Horas</p>
+        <h1>{{ entry.totalBalance }}</h1>
+    </div>
+
+    <div *ngFor="let entrie of entry.entries" class="entrie-container">
+        <p class="entrie-description"><b>
+            {{ entrie.day | date: "dd/MM/yyyy" }} 
+            {{ entrie.description ? " - " + entrie.description : "" }}
+        </b></p>
+
+        <div class="entrie-list">
+            <p  *ngFor="let time of entrie.entries" class="entrie-item">{{ time }}</p>
+
+            <p class="entrie-item entrie-balance">{{ entrie.balance }}</p>
+        </div>
+    </div>
+</div>
