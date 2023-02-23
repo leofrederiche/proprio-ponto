@@ -6,21 +6,18 @@
 }
 
 .header {
-    margin: 50px;
     padding: 10px;
     text-align: center;
     border-bottom: 2px solid #ddd;
     width: 100%;
 }
 
+.form {
+    margin-top: 30px;
+}
+
 .entrie-container {
-    /* background-color: #f7f7f7; */
-    /* border: 1px solid #ddd; */
-    /* border-radius: 6px; */
-    border-bottom: 1px solid #888;
-    width: 100%;
-    padding: 10px 30px;
-    margin: 10px;
+    margin-top: 30px;
 }
 
 .entrie-list {
@@ -33,4 +30,8 @@
 
 .entrie-balance {
     color: #0000ff;
+}
+
+.btn {
+    margin-top: 10px;
 }

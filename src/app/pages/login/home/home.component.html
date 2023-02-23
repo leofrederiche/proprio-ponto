@@ -1,19 +1,55 @@
+
+
 <div class="container">
     <div class="header">
         <p>Banco de Horas</p>
         <h1>{{ entry.totalBalance }}</h1>
     </div>
 
-    <div *ngFor="let entrie of entry.entries" class="entrie-container">
-        <p class="entrie-description"><b>
-            {{ entrie.day | date: "dd/MM/yyyy" }} 
-            {{ entrie.description ? " - " + entrie.description : "" }}
-        </b></p>
+    <form [formGroup]="form" class="form row">
+        <div class="col">
+            <label for="day">Dia</label>
+            <input type="text" class="form-control" formControlName="day" value="leo">
+        </div>
 
-        <div class="entrie-list">
-            <p  *ngFor="let time of entrie.entries" class="entrie-item">{{ time }}</p>
+        <div class="col">
+            <label for="in1">Entrada 1</label>
+            <input type="text" class="form-control" formControlName="in1">
+        </div>
 
-            <p class="entrie-item entrie-balance">{{ entrie.balance }}</p>
+        <div class="col">
+            <label for="out1">Saída 1</label>
+            <input type="text" class="form-control" formControlName="out1">
+        </div>
+
+        <div class="col">
+            <label for="in2">Entrada 2</label>
+            <input type="text" class="form-control" formControlName="in2">
+        </div>
+
+        <div class="col">
+            <label for="out2">Saída 2</label>
+            <input type="text" class="form-control" formControlName="out2">
+        </div>
+
+        <div class="mb-3">
+            <button (click)="saveEntry()" type="button" class="btn btn-primary form-control">Salvar</button>
+        </div>
+    </form>
+
+    <div *ngFor="let entrie of entry.entries.reverse().slice(0, 30) " class="card entrie-container border-primary" style="width: 100%">
+        <div class="card-header">
+            {{ entrie.day | date: "dd/MM/yyyy" }} {{ entrie.description ? " - " + entrie.description : "" }}
+        </div>
+
+        <div class="card-body entrie-list">
+            <p *ngFor="let time of entrie.entries" class="card-text">{{ time }}</p>
+            <h5 class="cad-title text-primary">{{ entrie.balance }}</h5>
+        </div>
+
+        <div class="card-footer text-end">
+            <button (click)="changeEntrie(entrie)" type="button" class="btn btn-primary" style="margin-right: 10px;">Alterar</button>
+            <button type="button" class="btn btn-danger">Excluir</button>
         </div>
     </div>
 </div>
