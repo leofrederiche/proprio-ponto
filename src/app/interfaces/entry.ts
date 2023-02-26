@@ -1,4 +1,5 @@
 export interface EntrieInterface {
+    _id: string,
     visible: boolean,
     user: string,
     day: Date,
@@ -8,7 +9,7 @@ export interface EntrieInterface {
     entries: string[]
 }
 
-export interface EntryInterface {
+export interface TotalEntrieInterface {
     entries: EntrieInterface[],
     totalBalance: string
 }
