@@ -15,7 +15,7 @@ import { Api } from "src/app/services/api_config";
 export class HomeComponent {
     constructor(
         private httpClient: HttpClient,
-    ){}
+    ) { }
 
     public entry = <TotalEntrieInterface>{
         totalBalance: "00:00",
@@ -35,7 +35,7 @@ export class HomeComponent {
         this.loadEntries()
     }
 
-    public loadEntries():void {        
+    public loadEntries(): void {
         this.httpClient.post<TotalEntrieInterface>(Api.baseUrl, { user_id: Api.userId }).subscribe({
             next: data => {
                 this.entry = data
@@ -84,14 +84,14 @@ export class HomeComponent {
             next: data => {
                 this.loadEntries()
                 this.form.reset()
-            }, 
+            },
             error: error => {
                 console.log("Error -> ", error)
             }
         })
     }
 
-    public changeEntrie(entrie:EntrieInterface): void {
+    public changeEntrie(entrie: EntrieInterface): void {
         this.form.setValue({
             _id: entrie._id,
             day: moment(entrie.day).format("DD/MM/YYYY"),
@@ -103,7 +103,7 @@ export class HomeComponent {
     }
 
     public deleteEntrie(entrie_id: EntrieInterface["_id"]): void {
-        const url =  `${Api.baseUrl}/${entrie_id}`
+        const url = `${Api.baseUrl}/${entrie_id}`
 
         this.httpClient.delete(url).subscribe({
             next: data => {

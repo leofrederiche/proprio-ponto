@@ -1,55 +1,40 @@
+<div class="main-container">
+	<div class="header">
+		<h1>{{ entry.totalBalance }}</h1>
+		<p>Banco de Horas</p>
 
+		<br>
+		<button mat-flat-button color="primary">
+			<mat-icon>add</mat-icon>
+			Insert Entrie
+		</button>
+	</div>
 
-<div class="container">
-    <div class="header">
-        <p>Banco de Horas</p>
-        <h1>{{ entry.totalBalance }}</h1>
-    </div>
+	<div class="content">
+		<mat-accordion>
+			<mat-expansion-panel *ngFor="let entrie of entry.entries">
+				<mat-expansion-panel-header>
+					<mat-panel-title>
+						{{ entrie.day | date: 'dd MMM YYYY' }}
+					</mat-panel-title>
+					<mat-panel-description>
+						<div class="panel-description">
+							<p>
+								{{ entrie.description ? ' - ' + entrie.description : 'Withouth description' }}
+							</p>
+							<p class="worked-description">
+								Day balance: {{ entrie.balance }}
+							</p>
+						</div>
+					</mat-panel-description>
+				</mat-expansion-panel-header>
 
-    <form [formGroup]="form" class="form row">
-        <div class="col">
-            <label for="day">Dia</label>
-            <input type="text" class="form-control" formControlName="day" value="leo">
-        </div>
+				<div class="panel-details">
+					<p *ngFor="let time of entrie.entries">{{ time }}</p>
+					<mat-chip>{{ entrie.work }}</mat-chip>
+				</div>
+			</mat-expansion-panel>
+		</mat-accordion>
+	</div>
 
-        <div class="col">
-            <label for="in1">Entrada 1</label>
-            <input type="text" class="form-control" formControlName="in1">
-        </div>
-
-        <div class="col">
-            <label for="out1">Saída 1</label>
-            <input type="text" class="form-control" formControlName="out1">
-        </div>
-
-        <div class="col">
-            <label for="in2">Entrada 2</label>
-            <input type="text" class="form-control" formControlName="in2">
-        </div>
-
-        <div class="col">
-            <label for="out2">Saída 2</label>
-            <input type="text" class="form-control" formControlName="out2">
-        </div>
-
-        <div class="mb-3">
-            <button (click)="saveEntrie()" type="button" class="btn btn-primary form-control">Salvar</button>
-        </div>
-    </form>
-
-    <div *ngFor="let entrie of entry.entries.reverse().slice(0, 30) " class="card entrie-container border-primary" style="width: 100%">
-        <div class="card-header">
-            {{ entrie.day | date: "dd/MM/yyyy" }} {{ entrie.description ? " - " + entrie.description : "" }}
-        </div>
-
-        <div class="card-body entrie-list">
-            <p *ngFor="let time of entrie.entries" class="card-text">{{ time }}</p>
-            <h5 class="cad-title text-primary">{{ entrie.balance }}</h5>
-        </div>
-
-        <div class="card-footer text-end">
-            <button (click)="changeEntrie(entrie)" type="button" class="btn btn-primary" style="margin-right: 10px;">Alterar</button>
-            <button (click)="deleteEntrie(entrie._id)" type="button" class="btn btn-danger">Excluir</button>
-        </div>
-    </div>
 </div>
