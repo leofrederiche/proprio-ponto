@@ -4,7 +4,7 @@
 		<p>Banco de Horas</p>
 
 		<br>
-		<button mat-flat-button color="primary">
+		<button mat-flat-button color="primary" (click)="openEntrieForm()">
 			<mat-icon>add</mat-icon>
 			Insert Entrie
 		</button>
@@ -12,6 +12,24 @@
 
 	<div class="content">
 		<mat-accordion>
+			<mat-expansion-panel disabled>
+				<mat-expansion-panel-header>
+					<mat-panel-title>
+						<p class="mat-header">Day</p>
+					</mat-panel-title>
+					<mat-panel-description>
+						<div class="panel-description mat-header">
+							<p>
+								Description
+							</p>
+							<p class="mat-header">
+								Day balance
+							</p>
+						</div>
+					</mat-panel-description>
+				</mat-expansion-panel-header>
+			</mat-expansion-panel>
+
 			<mat-expansion-panel *ngFor="let entrie of entry.entries">
 				<mat-expansion-panel-header>
 					<mat-panel-title>
@@ -23,7 +41,7 @@
 								{{ entrie.description ? ' - ' + entrie.description : 'Withouth description' }}
 							</p>
 							<p class="worked-description">
-								Day balance: {{ entrie.balance }}
+								{{ entrie.balance }}
 							</p>
 						</div>
 					</mat-panel-description>

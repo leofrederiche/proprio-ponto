@@ -33,6 +33,10 @@
     max-width: 60%;
 }
 
+.mat-header {
+    color: white;
+}
+
 .panel-description {
     padding-top: 10px;
     display: flex;

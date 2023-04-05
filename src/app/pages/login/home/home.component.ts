@@ -1,10 +1,13 @@
 import { Component } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { FormGroup, FormControl } from "@angular/forms";
+import { MatDialog } from '@angular/material/dialog';
+
 import * as moment from 'moment';
 
 import { TotalEntrieInterface, EntrieInterface } from "../../../interfaces/entry"
 import { Api } from "src/app/services/api_config";
+import { DialogEntrieForm } from "src/app/components/dialog-entrie-form.component";
 
 @Component({
     selector: "app-home",
@@ -15,6 +18,7 @@ import { Api } from "src/app/services/api_config";
 export class HomeComponent {
     constructor(
         private httpClient: HttpClient,
+        public dialogEntrieForm: MatDialog
     ) { }
 
     public entry = <TotalEntrieInterface>{
@@ -113,5 +117,15 @@ export class HomeComponent {
                 console.log(`Error -> ${error}`)
             }
         })
+    }
+
+    public openEntrieForm(): void {
+        const dialogRef = this.dialogEntrieForm.open(DialogEntrieForm, { disableClose: true })
+
+        // dialogRef.afterClosed().subscribe(
+        //     result => (
+        //         alert("Finish")
+        //     )
+        // )
     }
 }
