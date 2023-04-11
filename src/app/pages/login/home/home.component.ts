@@ -122,10 +122,12 @@ export class HomeComponent {
     public openEntrieForm(): void {
         const dialogRef = this.dialogEntrieForm.open(DialogEntrieForm, { disableClose: true })
 
-        // dialogRef.afterClosed().subscribe(
-        //     result => (
-        //         alert("Finish")
-        //     )
-        // )
+        dialogRef.afterClosed().subscribe(
+            result => {
+                if (result.status == "confirm") {
+                    this.loadEntries()
+                }
+            }
+        )
     }
 }

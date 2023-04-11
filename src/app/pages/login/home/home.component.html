@@ -30,7 +30,7 @@
 				</mat-expansion-panel-header>
 			</mat-expansion-panel>
 
-			<mat-expansion-panel *ngFor="let entrie of entry.entries">
+			<mat-expansion-panel *ngFor="let entrie of entry.entries.reverse()">
 				<mat-expansion-panel-header>
 					<mat-panel-title>
 						{{ entrie.day | date: 'dd MMM YYYY' }}
@@ -38,7 +38,7 @@
 					<mat-panel-description>
 						<div class="panel-description">
 							<p>
-								{{ entrie.description ? ' - ' + entrie.description : 'Withouth description' }}
+								{{ entrie.description ? entrie.description : '(Withouth description)' }}
 							</p>
 							<p class="worked-description">
 								{{ entrie.balance }}

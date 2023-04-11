@@ -1,15 +1,49 @@
-<h1 mat-dialog-title>Hi Developer</h1>
-<div mat-dialog-content>
-    <p>Iae</p>
-    <mat-form-field appearance="fill">
-        <mat-label>Choose a date</mat-label>
-        <input matInput [matDatepicker]="picker">
-        <mat-hint>DD/MM/YYYY</mat-hint>
-        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
+<h1 mat-dialog-title>Entrie</h1>
+<div mat-dialog-content [formGroup]="entryForm">
+    <p>Entries / Exits</p>
+
+    <div class="container-form-field">
+        <mat-form-field appearance="fill">
+            <mat-label>Entry Date</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="day" placeholder="DD/MM/YYYY">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field class="field-full-width">
+            <mat-label>Description</mat-label>
+            <input type="text" matInput placeholder="Insert any description" formControlName="description">
+        </mat-form-field>
+    </div>
+
+    <div class="container-form-field">
+        <mat-form-field class="fill">
+            <mat-label>Entry 1</mat-label>
+            <input type="text" matInput (keyup)="formatTime($event.target)" maxlength="5" placeholder="23:59"
+                formControlName="in1">
+        </mat-form-field>
+
+        <mat-form-field class="fill">
+            <mat-label>Exit 1</mat-label>
+            <input type="text" matInput (keyup)="formatTime($event.target)" maxlength="5" placeholder="23:59"
+                formControlName="out1">
+        </mat-form-field>
+
+        <mat-form-field class="fill">
+            <mat-label>Entry 2</mat-label>
+            <input type="text" matInput (keyup)="formatTime($event.target)" maxlength="5" placeholder="23:59"
+                formControlName="in2">
+        </mat-form-field>
+
+        <mat-form-field class="fill">
+            <mat-label>Exit 2</mat-label>
+            <input type="text" matInput (keyup)="formatTime($event.target)" maxlength="5" placeholder="23:59"
+                formControlName="out2">
+        </mat-form-field>
+    </div>
 </div>
-<div mat-dialog-actions>
+<div mat-dialog-actions class="mat-action">
     <button mat-button (click)="onCancel()">Cancel</button>
-    <button mat-button (click)="onCancel()" cdkFocusInitial>Ok</button>
+    <button mat-raised-button color="accent" (click)="onConfirm()" cdkFocusInitial>Ok</button>
 </div>

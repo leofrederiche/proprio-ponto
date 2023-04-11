@@ -18,6 +18,9 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MAT_DATE_FORMATS } from '@angular/material/core';
+import { CUSTOM_DATE_FORMATS } from './helper/custom-date-format';
+import { MomentDateModule } from '@angular/material-moment-adapter';
 
 // Pages
 import { HomeComponent } from './pages/login/home/home.component';
@@ -51,9 +54,12 @@ import { DialogEntrieForm } from './components/dialog-entrie-form.component';
     MatDatepickerModule,
     MatInputModule,
     MatFormFieldModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MomentDateModule
   ],
-  providers: [],
+  providers: [
+    { provide: MAT_DATE_FORMATS, useValue: CUSTOM_DATE_FORMATS }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
